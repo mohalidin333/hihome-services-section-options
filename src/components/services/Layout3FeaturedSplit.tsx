@@ -348,11 +348,11 @@ export default function Layout3FeaturedSplit() {
           .l3-featured-row,
           .l3-secondary-row { grid-template-columns: 1fr !important; }
         }
-        @media (max-width: 420px) {
+        @media (max-width: 480px) {
           .l3-secondary.hh-service-card { flex-direction: column !important; }
-          .l3-secondary .hh-service-card > div:first-child {
+          .l3-secondary.hh-service-card > div:first-child {
             width: 100% !important;
-            height: 96px !important;
+            height: 88px !important;
           }
         }
       `}</style>

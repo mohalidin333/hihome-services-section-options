@@ -370,8 +370,10 @@ body {
   .hh-floating-nav {
     top: auto;
     bottom: 1.25rem;
-    right: 50%;
-    transform: translateX(50%);
+    left: 0;
+    right: 0;
+    width: fit-content;
+    margin: 0 auto;
     flex-direction: row;
     min-width: unset;
     padding: 0.375rem;

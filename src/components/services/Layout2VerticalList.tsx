@@ -111,6 +111,7 @@ export default function Layout2VerticalList() {
                   <Image src="/icons/{service.id}.svg" width={28} height={28} alt="" />
               */}
               <div
+                className="l2-icon-badge"
                 style={{
                   width: 56,
                   height: 56,
@@ -243,10 +244,22 @@ export default function Layout2VerticalList() {
         </button>
       </div>
 
-      {/* Responsive: hide thumbnail on narrow screens */}
       <style>{`
-        @media (max-width: 480px) {
+        /* Hide thumbnail on narrow screens */
+        @media (max-width: 560px) {
           .l2-thumb { display: none !important; }
+        }
+        /* Compact row layout on mobile */
+        @media (max-width: 480px) {
+          .l2-row {
+            gap: 1rem !important;
+            padding: 1.125rem !important;
+          }
+          .l2-row .l2-icon-badge {
+            width: 44px !important;
+            height: 44px !important;
+            border-radius: 11px !important;
+          }
         }
       `}</style>
     </div>
