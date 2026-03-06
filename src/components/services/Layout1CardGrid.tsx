@@ -112,7 +112,7 @@ export default function Layout1CardGrid() {
                 style={{
                   width: 58,
                   height: 58,
-                  background: "rgba(212,175,95,0.18)",
+                  background: "rgba(255,255,255,0.72)",
                   backdropFilter: "blur(8px)",
                   WebkitBackdropFilter: "blur(8px)",
                   borderRadius: 14,
@@ -120,7 +120,7 @@ export default function Layout1CardGrid() {
                   alignItems: "center",
                   justifyContent: "center",
                   color: "#C8A84B",
-                  border: "1px solid rgba(212,175,95,0.30)",
+                  border: "1px solid rgba(255,255,255,0.90)",
                 }}
               >
                 <ServiceIconResolver icon={service.icon} size={28} />

@@ -202,14 +202,14 @@ export default function Layout2VerticalList() {
                 alignItems: "center",
                 justifyContent: "center",
                 gap: "0.3rem",
-                color: "rgba(212,175,95,0.70)",
+                color: "rgba(90,62,10,0.75)",
               }}
             >
               <ServiceIconResolver icon={service.icon} size={22} />
               <span
                 style={{
                   fontSize: "0.5rem",
-                  color: "rgba(212,175,95,0.40)",
+                  color: "rgba(80,55,10,0.55)",
                   letterSpacing: "0.07em",
                   textTransform: "uppercase",
                   textAlign: "center",

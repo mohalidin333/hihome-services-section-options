@@ -112,7 +112,7 @@ export default function Layout3FeaturedSplit() {
             className="hh-img-placeholder"
             style={{ height: 248, background: primary1.imageBg }}
           >
-            <div style={{ textAlign: "center", color: "#C8A84B" }}>
+            <div style={{ textAlign: "center", color: "rgba(90,62,10,0.80)" }}>
               <div
                 style={{
                   display: "flex",
@@ -181,7 +181,7 @@ export default function Layout3FeaturedSplit() {
             className="hh-img-placeholder"
             style={{ height: 248, background: primary2.imageBg }}
           >
-            <div style={{ textAlign: "center", color: "#C8A84B" }}>
+            <div style={{ textAlign: "center", color: "rgba(90,62,10,0.80)" }}>
               <div
                 style={{
                   display: "flex",
@@ -271,7 +271,7 @@ export default function Layout3FeaturedSplit() {
                 alignItems: "center",
                 justifyContent: "center",
                 gap: "0.5rem",
-                color: "#C8A84B",
+                color: "rgba(90,62,10,0.80)",
                 padding: "0 0.5rem",
               }}
             >
@@ -279,7 +279,7 @@ export default function Layout3FeaturedSplit() {
               <span
                 style={{
                   fontSize: "0.5rem",
-                  color: "rgba(212,175,95,0.40)",
+                  color: "rgba(80,55,10,0.55)",
                   letterSpacing: "0.07em",
                   textTransform: "uppercase",
                   textAlign: "center",

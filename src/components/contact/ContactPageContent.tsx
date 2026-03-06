@@ -393,11 +393,16 @@ export default function ContactPageContent() {
                 </div>
               </div>
 
-              {/* Map placeholder */}
-              <div className="hh-contact-map hh-img-placeholder">
-                <span style={{ fontSize: "0.6875rem", fontWeight: 600, letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(30,20,8,0.35)", zIndex: 2, position: "relative" }}>
-                  Map Placeholder
-                </span>
+              {/* OpenStreetMap — Kalakaua Ave, Honolulu */}
+              <div className="hh-contact-map">
+                <iframe
+                  src="https://www.openstreetmap.org/export/embed.html?bbox=-157.8342%2C21.2665%2C-157.8142%2C21.2865&layer=mapnik&marker=21.2765%2C-157.8242"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0, display: "block" }}
+                  loading="lazy"
+                  title="Hawaii Home Properties LLC — 1234 Kalakaua Ave, Honolulu"
+                />
               </div>
             </div>
 

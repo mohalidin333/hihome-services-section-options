@@ -387,7 +387,7 @@ export default function BlogPageContent() {
       <section className="hh-sp-section" style={{ background: "#FAF8F2", paddingTop: "3rem" }}>
         <div className="hh-sp-section-inner">
           <p className="hh-sp-eyebrow" style={{ marginBottom: "1.5rem" }}>Editor's Picks</p>
-          <div ref={editorPicksRef} style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
+          <div ref={editorPicksRef} className="hh-blog-ep-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
             {editorPicks.map((post) => (
               <div
                 key={post.id}
