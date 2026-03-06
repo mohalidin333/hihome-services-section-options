@@ -1,26 +1,390 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* =====================================================
+   HAWAII HOME PROPERTIES LLC — Design System
+   Color Palette: Pacific Ocean · Sandy Beach · Pearl White
+   Font: Poppins (clean, modern, readable)
+   ===================================================== */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* --- Brand Color Tokens --- */
+  --color-hh-ocean:        #4A7FA5; /* Pacific Ocean blue (primary) */
+  --color-hh-ocean-dark:   #2D5F82; /* Deep ocean (hover/dark state) */
+  --color-hh-ocean-light:  #7BADC8; /* Light ocean / sky reflection */
+  --color-hh-ocean-mist:   #E8F0F5; /* Mist / soft tint backgrounds */
+  --color-hh-sand:         #E8D4B0; /* Beach sand */
+  --color-hh-sand-light:   #F5EAD8; /* Light sand / warm white */
+  --color-hh-pearl:        #F7F4EF; /* Pearl white (page background) */
+  --color-hh-coral:        #C07A50; /* Coral / terracotta (CTA accent) */
+  --color-hh-coral-dark:   #A86340; /* Coral hover state */
+  --color-hh-dark:         #1E3040; /* Deep ocean dark (headings) */
+  --color-hh-text:         #2D4057; /* Body text */
+  --color-hh-muted:        #7A8E9E; /* Muted / secondary text */
+  --color-hh-border:       #D4E2EC; /* Subtle borders */
+
+  /* --- Typography --- */
+  --font-sans: var(--font-poppins);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* =====================================================
+   Base Styles
+   ===================================================== */
+:root {
+  --background: #F7F4EF;
+  --foreground: #2D4057;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-poppins), 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+}
+
+/* =====================================================
+   Section Background
+   Real background image handled via JS (ServicesSection.tsx).
+   The section is just a scroll container — the image layer
+   is a child <div> animated by GSAP (parallax + blur).
+   ===================================================== */
+.hh-section-bg {
+  position: relative;
+  overflow: hidden;
+  background: #060c18; /* Deep navy fallback while image loads */
+}
+
+/* =====================================================
+   Background image layer (parallax target)
+   Uses pixel-based overflow (calc) so the extra height for
+   parallax movement works regardless of whether the section
+   has an explicit height or just min-height.
+   background-image is set via inline style in the JSX to
+   avoid any CSS-bundler URL rewriting.
+   ===================================================== */
+.hh-bg-parallax {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -160px;
+  height: calc(100% + 320px);
+  background-size: cover;
+  background-position: center 20%;
+  background-repeat: no-repeat;
+  /* Near-natural rendering — the photo is the hero.
+     Light desaturation only to harmonize with the glass palette. */
+  filter: brightness(0.88) saturate(0.80) contrast(0.95) blur(0px);
+  will-change: transform, filter;
+}
+
+/* =====================================================
+   Dark veil — thin enough that the luxury photo remains
+   visible and dramatic; deep enough for glass cards to pop.
+   ===================================================== */
+.hh-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(6, 12, 24, 0.50) 0%,
+    rgba(6, 12, 24, 0.38) 45%,
+    rgba(6, 12, 24, 0.52) 100%
+  );
+}
+
+/* =====================================================
+   Service Card — Liquid Glass
+   backdrop-filter creates the real-glass blur effect.
+   Low-opacity white background + white border = crystal panel.
+   ===================================================== */
+.hh-service-card {
+  background: rgba(255, 255, 255, 0.13);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.30),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(36px);
+  -webkit-backdrop-filter: blur(36px);
+  will-change: transform, box-shadow;
+}
+
+/* Glass list row (Layout 2) */
+.hh-glass-row {
+  background: rgba(255, 255, 255, 0.11);
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  border-radius: 16px;
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.22);
+}
+
+/* =====================================================
+   Image area (placeholder + real image wrapper)
+   The ::after pseudo-element is the gradient fade that
+   blends the image bottom into the glass card body.
+   When you replace the placeholder div with a real <Image>,
+   wrap it in a div with class "hh-img-placeholder" and the
+   fade overlay will work automatically.
+   ===================================================== */
+.hh-img-placeholder {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Top edge — very faint inset highlight (glass rim feel) */
+.hh-img-placeholder::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.18);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Bottom fade — transparent → card glass color */
+.hh-img-placeholder::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 18, 32, 0.00) 0%,
+    rgba(10, 18, 32, 0.10) 50%,
+    rgba(10, 18, 32, 0.55) 100%
+  );
+  pointer-events: none;
+}
+
+.hh-img-placeholder-label {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.5625rem;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* =====================================================
+   Buttons
+   ===================================================== */
+
+/* Primary CTA — solid white */
+.hh-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.625rem 1.375rem;
+  background: #ffffff;
+  color: #0d1f33;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.22s ease, transform 0.18s ease, box-shadow 0.22s ease;
+  text-decoration: none;
+  white-space: nowrap;
+  line-height: 1;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+}
+.hh-btn-primary:hover {
+  background: #e8f0f7;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.30);
+}
+.hh-btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.20);
+}
+
+/* Outline CTA — solid white border */
+.hh-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.625rem 1.5rem;
+  background: transparent;
+  color: #ffffff;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
+  border-radius: 8px;
+  border: 1.5px solid rgba(255, 255, 255, 0.70);
+  cursor: pointer;
+  transition: background 0.22s ease, border-color 0.22s ease, transform 0.18s ease;
+  text-decoration: none;
+  white-space: nowrap;
+  line-height: 1;
+}
+.hh-btn-outline:hover {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #0d1f33;
+  transform: translateY(-1px);
+}
+
+/* =====================================================
+   Floating Navigation (layout switcher)
+   Fixed top-right; collapses to bottom-center on mobile.
+   ===================================================== */
+.hh-floating-nav {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 0.5rem;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.36),
+    inset 0 1px 0 rgba(255, 255, 255, 0.10);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 148px;
+}
+
+.hh-nav-label {
+  padding: 0.375rem 0.75rem 0.5rem;
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.38);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  margin-bottom: 0.25rem;
+  text-align: center;
+}
+
+.hh-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.875rem;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.60);
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+  text-align: left;
+  white-space: nowrap;
+  width: 100%;
+}
+.hh-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.20);
+}
+.hh-nav-btn.active {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #0d1f33;
+  font-weight: 600;
+}
+
+/* =====================================================
+   Section Heading Elements
+   ===================================================== */
+.hh-section-tag {
+  display: inline-block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+/* Crisp heading shadow on glass surfaces */
+.hh-service-card h3,
+.hh-glass-row h3 {
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
+}
+
+/* Layout 2 thumbnail — subtle vignette on the mini image */
+.l2-thumb {
+  position: relative;
+  overflow: hidden;
+}
+.l2-thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 18, 32, 0.10) 0%,
+    rgba(10, 18, 32, 0.38) 100%
+  );
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.hh-divider {
+  width: 48px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.10),
+    rgba(255, 255, 255, 0.65),
+    rgba(255, 255, 255, 0.10)
+  );
+  border-radius: 2px;
+}
+
+/* =====================================================
+   Responsive — Floating nav collapses to bottom center
+   ===================================================== */
+@media (max-width: 768px) {
+  .hh-floating-nav {
+    top: auto;
+    bottom: 1.25rem;
+    right: 50%;
+    transform: translateX(50%);
+    flex-direction: row;
+    min-width: unset;
+    padding: 0.375rem;
+    gap: 0.125rem;
+  }
+  .hh-nav-label {
+    display: none;
+  }
+  .hh-nav-btn {
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.625rem;
+    border-radius: 8px;
+  }
 }
