@@ -41,7 +41,7 @@ export default function Layout1CardGrid() {
   const onCardEnter = (e: React.MouseEvent<HTMLDivElement>) => {
     gsap.to(e.currentTarget, {
       y: -7,
-      boxShadow: "0 24px 52px rgba(0,0,0,0.42), inset 0 1px 0 rgba(255,255,255,0.22)",
+      boxShadow: "0 24px 52px rgba(180,148,70,0.22), inset 0 1px 0 rgba(255,255,255,0.90)",
       duration: 0.28,
       ease: "power2.out",
     });
@@ -49,7 +49,7 @@ export default function Layout1CardGrid() {
   const onCardLeave = (e: React.MouseEvent<HTMLDivElement>) => {
     gsap.to(e.currentTarget, {
       y: 0,
-      boxShadow: "0 8px 32px rgba(0,0,0,0.30), inset 0 1px 0 rgba(255,255,255,0.12)",
+      boxShadow: "0 8px 32px rgba(180,148,70,0.14), inset 0 1px 0 rgba(255,255,255,0.80)",
       duration: 0.28,
       ease: "power2.out",
     });
@@ -65,7 +65,7 @@ export default function Layout1CardGrid() {
           fontWeight: 600,
           letterSpacing: "0.12em",
           textTransform: "uppercase",
-          color: "rgba(255,255,255,0.38)",
+          color: "rgba(212,175,95,0.42)",
           marginBottom: "2rem",
         }}
       >
@@ -112,15 +112,15 @@ export default function Layout1CardGrid() {
                 style={{
                   width: 58,
                   height: 58,
-                  background: "rgba(255,255,255,0.18)",
+                  background: "rgba(212,175,95,0.18)",
                   backdropFilter: "blur(8px)",
                   WebkitBackdropFilter: "blur(8px)",
                   borderRadius: 14,
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  color: "#ffffff",
-                  border: "1px solid rgba(255,255,255,0.25)",
+                  color: "#C8A84B",
+                  border: "1px solid rgba(212,175,95,0.30)",
                 }}
               >
                 <ServiceIconResolver icon={service.icon} size={28} />
@@ -152,7 +152,7 @@ export default function Layout1CardGrid() {
                 style={{
                   fontSize: "1.0625rem",
                   fontWeight: 600,
-                  color: "#ffffff",
+                  color: "#1E1408",
                   lineHeight: 1.35,
                   marginBottom: "0.625rem",
                   marginTop: 0,
@@ -165,7 +165,7 @@ export default function Layout1CardGrid() {
               <p
                 style={{
                   fontSize: "0.875rem",
-                  color: "rgba(255,255,255,0.82)",
+                  color: "rgba(30,20,8,0.65)",
                   lineHeight: 1.68,
                   marginBottom: "1.375rem",
                   marginTop: 0,

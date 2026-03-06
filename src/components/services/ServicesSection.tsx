@@ -201,7 +201,7 @@ export default function ServicesSection() {
             style={{
               fontSize: "clamp(1.875rem, 4.5vw, 2.875rem)",
               fontWeight: 700,
-              color: "#ffffff",
+              color: "#FFFFFF",
               lineHeight: 1.2,
               letterSpacing: "-0.022em",
               marginBottom: "1rem",
@@ -209,7 +209,7 @@ export default function ServicesSection() {
             }}
           >
             Real Estate Services with{" "}
-            <span style={{ color: "rgba(160, 200, 230, 0.95)" }}>Aloha Spirit</span>
+            <span style={{ color: "#C8A84B" }}>Aloha Spirit</span>
           </h2>
 
           {/* Subheading */}
@@ -217,7 +217,7 @@ export default function ServicesSection() {
             className="hh-header-child"
             style={{
               fontSize: "clamp(0.9375rem, 2vw, 1.0625rem)",
-              color: "rgba(255, 255, 255, 0.62)",
+              color: "rgba(255, 255, 255, 0.78)",
               lineHeight: 1.72,
               maxWidth: 580,
               margin: "0 auto",

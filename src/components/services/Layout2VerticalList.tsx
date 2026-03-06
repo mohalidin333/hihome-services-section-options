@@ -73,7 +73,7 @@ export default function Layout2VerticalList() {
           fontWeight: 600,
           letterSpacing: "0.12em",
           textTransform: "uppercase",
-          color: "rgba(255,255,255,0.38)",
+          color: "rgba(212,175,95,0.42)",
           marginBottom: "2rem",
         }}
       >
@@ -132,7 +132,7 @@ export default function Layout2VerticalList() {
                 style={{
                   fontSize: "0.625rem",
                   fontWeight: 700,
-                  color: "rgba(255,255,255,0.18)",
+                  color: "rgba(212,175,95,0.22)",
                   letterSpacing: "0.04em",
                 }}
               >
@@ -162,7 +162,7 @@ export default function Layout2VerticalList() {
                 style={{
                   fontSize: "1.0625rem",
                   fontWeight: 600,
-                  color: "#ffffff",
+                  color: "#1E1408",
                   lineHeight: 1.35,
                   marginBottom: "0.5rem",
                   marginTop: 0,
@@ -175,7 +175,7 @@ export default function Layout2VerticalList() {
               <p
                 style={{
                   fontSize: "0.875rem",
-                  color: "rgba(255,255,255,0.82)",
+                  color: "rgba(30,20,8,0.65)",
                   lineHeight: 1.7,
                   marginTop: 0,
                   marginBottom: 0,
@@ -202,14 +202,14 @@ export default function Layout2VerticalList() {
                 alignItems: "center",
                 justifyContent: "center",
                 gap: "0.3rem",
-                color: "rgba(255,255,255,0.85)",
+                color: "rgba(212,175,95,0.70)",
               }}
             >
               <ServiceIconResolver icon={service.icon} size={22} />
               <span
                 style={{
                   fontSize: "0.5rem",
-                  color: "rgba(255,255,255,0.55)",
+                  color: "rgba(212,175,95,0.40)",
                   letterSpacing: "0.07em",
                   textTransform: "uppercase",
                   textAlign: "center",

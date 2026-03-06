@@ -53,7 +53,7 @@ export default function Layout3FeaturedSplit() {
   const onEnter = (e: React.MouseEvent<HTMLDivElement>) => {
     gsap.to(e.currentTarget, {
       y: -6,
-      boxShadow: "0 24px 52px rgba(0,0,0,0.42), inset 0 1px 0 rgba(255,255,255,0.22)",
+      boxShadow: "0 24px 52px rgba(180,148,70,0.22), inset 0 1px 0 rgba(255,255,255,0.90)",
       duration: 0.28,
       ease: "power2.out",
     });
@@ -61,7 +61,7 @@ export default function Layout3FeaturedSplit() {
   const onLeave = (e: React.MouseEvent<HTMLDivElement>) => {
     gsap.to(e.currentTarget, {
       y: 0,
-      boxShadow: "0 8px 32px rgba(0,0,0,0.30), inset 0 1px 0 rgba(255,255,255,0.12)",
+      boxShadow: "0 8px 32px rgba(180,148,70,0.14), inset 0 1px 0 rgba(255,255,255,0.80)",
       duration: 0.28,
       ease: "power2.out",
     });
@@ -79,7 +79,7 @@ export default function Layout3FeaturedSplit() {
           fontWeight: 600,
           letterSpacing: "0.12em",
           textTransform: "uppercase",
-          color: "rgba(255,255,255,0.38)",
+          color: "rgba(212,175,95,0.42)",
           marginBottom: "2rem",
         }}
       >
@@ -112,7 +112,7 @@ export default function Layout3FeaturedSplit() {
             className="hh-img-placeholder"
             style={{ height: 248, background: primary1.imageBg }}
           >
-            <div style={{ textAlign: "center", color: "#ffffff" }}>
+            <div style={{ textAlign: "center", color: "#C8A84B" }}>
               <div
                 style={{
                   display: "flex",
@@ -145,7 +145,7 @@ export default function Layout3FeaturedSplit() {
               style={{
                 fontSize: "1.1875rem",
                 fontWeight: 700,
-                color: "#ffffff",
+                color: "#1E1408",
                 lineHeight: 1.3,
                 marginBottom: "0.75rem",
                 marginTop: 0,
@@ -156,7 +156,7 @@ export default function Layout3FeaturedSplit() {
             <p
               style={{
                 fontSize: "0.875rem",
-                color: "rgba(255,255,255,0.82)",
+                color: "rgba(30,20,8,0.65)",
                 lineHeight: 1.72,
                 marginBottom: "1.5rem",
                 marginTop: 0,
@@ -181,7 +181,7 @@ export default function Layout3FeaturedSplit() {
             className="hh-img-placeholder"
             style={{ height: 248, background: primary2.imageBg }}
           >
-            <div style={{ textAlign: "center", color: "#ffffff" }}>
+            <div style={{ textAlign: "center", color: "#C8A84B" }}>
               <div
                 style={{
                   display: "flex",
@@ -214,7 +214,7 @@ export default function Layout3FeaturedSplit() {
               style={{
                 fontSize: "1.1875rem",
                 fontWeight: 700,
-                color: "#ffffff",
+                color: "#1E1408",
                 lineHeight: 1.3,
                 marginBottom: "0.75rem",
                 marginTop: 0,
@@ -225,7 +225,7 @@ export default function Layout3FeaturedSplit() {
             <p
               style={{
                 fontSize: "0.875rem",
-                color: "rgba(255,255,255,0.82)",
+                color: "rgba(30,20,8,0.65)",
                 lineHeight: 1.72,
                 marginBottom: "1.5rem",
                 marginTop: 0,
@@ -271,7 +271,7 @@ export default function Layout3FeaturedSplit() {
                 alignItems: "center",
                 justifyContent: "center",
                 gap: "0.5rem",
-                color: "#ffffff",
+                color: "#C8A84B",
                 padding: "0 0.5rem",
               }}
             >
@@ -279,7 +279,7 @@ export default function Layout3FeaturedSplit() {
               <span
                 style={{
                   fontSize: "0.5rem",
-                  color: "rgba(255,255,255,0.58)",
+                  color: "rgba(212,175,95,0.40)",
                   letterSpacing: "0.07em",
                   textTransform: "uppercase",
                   textAlign: "center",
@@ -311,7 +311,7 @@ export default function Layout3FeaturedSplit() {
                 style={{
                   fontSize: "0.9375rem",
                   fontWeight: 600,
-                  color: "#ffffff",
+                  color: "#1E1408",
                   lineHeight: 1.35,
                   marginBottom: "0.5rem",
                   marginTop: 0,
@@ -322,7 +322,7 @@ export default function Layout3FeaturedSplit() {
               <p
                 style={{
                   fontSize: "0.8125rem",
-                  color: "rgba(255,255,255,0.82)",
+                  color: "rgba(30,20,8,0.65)",
                   lineHeight: 1.65,
                   marginBottom: "1rem",
                   marginTop: 0,
