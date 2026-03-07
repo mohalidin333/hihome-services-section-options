@@ -149,8 +149,7 @@ export default function ServicesSection() {
   return (
     <section
       ref={sectionRef}
-      className="hh-section-bg"
-      style={{ minHeight: "100vh", padding: "5rem 1.5rem 6rem" }}
+      className="hh-section-bg min-h-screen pt-20 px-6 pb-24"
     >
       {/* =====================================================
           BACKGROUND IMAGE LAYER
@@ -173,40 +172,24 @@ export default function ServicesSection() {
       />
 
       {/* ---- Main content ---- */}
-      <div
-        style={{
-          maxWidth: 1120,
-          margin: "0 auto",
-          position: "relative",
-          zIndex: 2,
-        }}
-      >
+      <div className="max-w-[1120px] mx-auto relative z-[2]">
         {/* =====================================================
-            Section Header — dark text on frosted pearl overlay
+            Section Header — white text on dark background
             ===================================================== */}
-        <header style={{ textAlign: "center", marginBottom: "3.5rem" }}>
+        <header className="text-center mb-14">
 
           {/* Eyebrow tag */}
           <span className="hh-section-tag hh-header-child">Our Services</span>
 
           {/* Divider */}
           <div
-            className="hh-divider hh-header-child"
-            style={{ margin: "0.875rem auto 1.625rem" }}
+            className="hh-divider hh-header-child mt-[0.875rem] mb-[1.625rem] mx-auto"
           />
 
           {/* Main heading */}
           <h2
-            className="hh-header-child"
-            style={{
-              fontSize: "clamp(1.875rem, 4.5vw, 2.875rem)",
-              fontWeight: 700,
-              color: "#FFFFFF",
-              lineHeight: 1.2,
-              letterSpacing: "-0.022em",
-              marginBottom: "1rem",
-              marginTop: 0,
-            }}
+            className="hh-header-child font-bold text-white leading-[1.2] tracking-[-0.022em] mb-4 mt-0"
+            style={{ fontSize: "clamp(1.875rem, 4.5vw, 2.875rem)" }}
           >
             Real Estate Services with{" "}
             <span style={{ color: "#C8A84B" }}>Aloha Spirit</span>
@@ -214,14 +197,8 @@ export default function ServicesSection() {
 
           {/* Subheading */}
           <p
-            className="hh-header-child"
-            style={{
-              fontSize: "clamp(0.9375rem, 2vw, 1.0625rem)",
-              color: "rgba(255, 255, 255, 0.78)",
-              lineHeight: 1.72,
-              maxWidth: 580,
-              margin: "0 auto",
-            }}
+            className="hh-header-child text-white/[0.78] leading-[1.72] max-w-[580px] mx-auto"
+            style={{ fontSize: "clamp(0.9375rem, 2vw, 1.0625rem)" }}
           >
             Hawaii Home Properties LLC guides you through every step of your
             real estate journey in the Aloha State — with professionalism,

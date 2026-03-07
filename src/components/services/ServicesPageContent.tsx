@@ -185,6 +185,12 @@ const processSteps = [
   },
 ];
 
+/* Shared Tailwind patterns */
+const eyebrow = "text-[0.6875rem] font-bold tracking-[0.18em] uppercase text-hh-gold mb-[0.875rem]";
+const sectionSubtext = "text-[0.9375rem] text-hh-text/[0.55] max-w-[500px] leading-[1.7] m-0";
+const serviceTagline = "inline-block text-[0.625rem] font-bold tracking-[0.16em] uppercase text-hh-gold/[0.80] bg-[rgba(212,175,95,0.10)] border border-[rgba(212,175,95,0.22)] rounded-full px-[0.875rem] py-[0.3rem] mb-[1.125rem]";
+const sectionInner = "max-w-[1200px] mx-auto px-8 max-[700px]:px-5";
+
 export default function ServicesPageContent() {
   const bgRef = useRef<HTMLDivElement>(null);
   const heroContentRef = useRef<HTMLDivElement>(null);
@@ -251,7 +257,7 @@ export default function ServicesPageContent() {
       /* Stats count-up feel */
       if (statsRef.current) {
         gsap.fromTo(
-          statsRef.current.querySelectorAll(".hh-sp-stat-number"),
+          statsRef.current.querySelectorAll("[data-stat-num]"),
           { opacity: 0, y: 20 },
           {
             opacity: 1,
@@ -270,7 +276,7 @@ export default function ServicesPageContent() {
       /* Why cards stagger */
       if (whyRef.current) {
         gsap.fromTo(
-          whyRef.current.querySelectorAll(".hh-sp-why-card"),
+          whyRef.current.querySelectorAll("[data-why-card]"),
           { opacity: 0, y: 24 },
           {
             opacity: 1,
@@ -289,7 +295,7 @@ export default function ServicesPageContent() {
       /* Process cards stagger */
       if (processRef.current) {
         gsap.fromTo(
-          processRef.current.querySelectorAll(".hh-sp-process-card"),
+          processRef.current.querySelectorAll("[data-process-card]"),
           { opacity: 0, y: 24 },
           {
             opacity: 1,
@@ -328,63 +334,50 @@ export default function ServicesPageContent() {
   }, []);
 
   return (
-    <div className="hh-sp-page">
+    <div className="bg-hh-warm-bg text-hh-text min-h-screen">
       {/* ===== HERO ===== */}
-      <section className="hh-sp-hero">
+      <section className="relative min-h-screen flex items-center overflow-hidden">
         {/* Parallax background */}
         <div
           ref={bgRef}
+          className="absolute left-0 right-0 bg-cover"
           style={{
-            position: "absolute",
-            left: 0,
-            right: 0,
             top: -120,
             height: "calc(100% + 240px)",
             backgroundImage: "url('/luxury-home.png')",
-            backgroundSize: "cover",
             backgroundPosition: "center 30%",
             filter: "brightness(0.72) saturate(0.75) contrast(0.95)",
           }}
         />
         {/* Overlay */}
         <div
+          className="absolute inset-0"
           style={{
-            position: "absolute",
-            inset: 0,
             background:
               "linear-gradient(180deg, rgba(10,8,4,0.58) 0%, rgba(10,8,4,0.38) 50%, rgba(10,8,4,0.65) 100%)",
           }}
         />
 
-        <div ref={heroContentRef} className="hh-sp-hero-content">
-          <p className="hh-sp-eyebrow">Hawaii Home Properties LLC</p>
+        <div
+          ref={heroContentRef}
+          className="relative z-[2] max-w-[1200px] mx-auto px-8 pt-[140px] pb-24 w-full max-[700px]:px-5 max-[700px]:pt-[120px] max-[700px]:pb-16"
+        >
+          <p className={eyebrow}>Hawaii Home Properties LLC</p>
           <h1
-            style={{
-              fontSize: "clamp(2.25rem, 5.5vw, 4rem)",
-              fontWeight: 700,
-              color: "#FFFFFF",
-              margin: "0 0 1.25rem",
-              lineHeight: 1.12,
-              letterSpacing: "-0.02em",
-              maxWidth: 700,
-            }}
+            className="font-bold text-white mb-5 leading-[1.12] tracking-[-0.02em] max-w-[700px] mt-0"
+            style={{ fontSize: "clamp(2.25rem, 5.5vw, 4rem)" }}
           >
             Comprehensive Real Estate Services with Aloha Spirit
           </h1>
           <p
-            style={{
-              fontSize: "clamp(1rem, 1.8vw, 1.1875rem)",
-              color: "rgba(255,255,255,0.82)",
-              lineHeight: 1.7,
-              maxWidth: 560,
-              margin: "0 0 2.5rem",
-            }}
+            className="text-white/[0.82] leading-[1.7] max-w-[560px] mb-10 mt-0"
+            style={{ fontSize: "clamp(1rem, 1.8vw, 1.1875rem)" }}
           >
             From finding your dream home to managing your investment portfolio —
             we deliver expert real estate guidance across every corner of Hawaii,
             with the warmth and integrity of true aloha.
           </p>
-          <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+          <div className="flex gap-4 flex-wrap">
             <Link href="/contact" className="hh-btn-primary">
               Get a Free Consultation
             </Link>
@@ -394,44 +387,39 @@ export default function ServicesPageContent() {
       </section>
 
       {/* ===== STATS STRIP ===== */}
-      <div ref={statsRef} className="hh-sp-stats">
-        <div className="hh-sp-stats-grid">
+      <div
+        ref={statsRef}
+        className="bg-[rgba(212,175,95,0.06)] border-t border-b border-[rgba(212,175,95,0.14)] py-14"
+      >
+        <div className={`${sectionInner} grid grid-cols-2 min-[900px]:grid-cols-4 gap-8 text-center`}>
           {stats.map((stat) => (
             <div key={stat.label}>
-              <div className="hh-sp-stat-number">{stat.number}</div>
-              <div className="hh-sp-stat-label">{stat.label}</div>
+              <div
+                data-stat-num=""
+                className="font-bold text-hh-text leading-none mb-2 tracking-[-0.02em]"
+                style={{ fontSize: "clamp(2rem, 4vw, 2.75rem)" }}
+              >
+                {stat.number}
+              </div>
+              <div className="text-[0.8125rem] text-hh-text/[0.48] font-medium tracking-[0.02em]">
+                {stat.label}
+              </div>
             </div>
           ))}
         </div>
       </div>
 
       {/* ===== SERVICE DETAILS ===== */}
-      <section
-        className="hh-sp-section"
-        style={{ background: "#FAF8F2" }}
-      >
-        <div className="hh-sp-section-inner">
-          <p className="hh-sp-eyebrow">What We Offer</p>
+      <section className="py-24 bg-hh-warm-bg">
+        <div className={sectionInner}>
+          <p className={eyebrow}>What We Offer</p>
           <h2
-            style={{
-              fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
-              fontWeight: 700,
-              color: "#1E1408",
-              margin: "0 0 0.5rem",
-              letterSpacing: "-0.015em",
-            }}
+            className="font-bold text-hh-text mb-2 mt-0 tracking-[-0.015em] leading-[1.2]"
+            style={{ fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)" }}
           >
             Everything You Need, Under One Roof
           </h2>
-          <p
-            style={{
-              fontSize: "0.9375rem",
-              color: "rgba(30,20,8,0.55)",
-              maxWidth: 520,
-              lineHeight: 1.7,
-              margin: 0,
-            }}
-          >
+          <p className={sectionSubtext}>
             Our full-service brokerage covers every aspect of Hawaii real estate
             — whether you are a first-time buyer, seasoned investor, or property
             owner looking for professional management.
@@ -443,29 +431,15 @@ export default function ServicesPageContent() {
               ref={(el) => {
                 if (el) serviceRowsRef.current[i] = el;
               }}
-              className="hh-sp-service-row"
-              style={{
-                direction: service.reverse ? "rtl" : "ltr",
-              }}
+              className="grid grid-cols-1 min-[700px]:grid-cols-2 gap-16 items-center py-[4.5rem] border-b border-[rgba(212,175,95,0.12)] last:border-b-0 max-[700px]:gap-8 max-[700px]:py-12"
+              style={{ direction: service.reverse ? "rtl" : "ltr" }}
             >
               {/* Image */}
               <div
-                className="hh-sp-service-img hh-img-placeholder"
-                style={{
-                  background: service.imageBg,
-                  direction: "ltr",
-                }}
+                className="hh-img-placeholder rounded-[20px] overflow-hidden aspect-[4/3] relative"
+                style={{ background: service.imageBg, direction: "ltr" }}
               >
-                <div
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: "rgba(180,145,65,0.45)",
-                  }}
-                >
+                <div className="absolute inset-0 flex items-center justify-center text-[rgba(180,145,65,0.45)]">
                   <service.Icon size={72} />
                 </div>
                 <span className="hh-img-placeholder-label">
@@ -475,12 +449,22 @@ export default function ServicesPageContent() {
 
               {/* Content */}
               <div style={{ direction: "ltr" }}>
-                <span className="hh-sp-service-tagline">{service.tagline}</span>
-                <h3 className="hh-sp-service-title">{service.title}</h3>
-                <p className="hh-sp-service-desc">{service.description}</p>
-                <ul className="hh-sp-feature-list">
+                <span className={serviceTagline}>{service.tagline}</span>
+                <h3
+                  className="font-bold text-hh-text m-0 mb-4 leading-[1.2] tracking-[-0.01em]"
+                  style={{ fontSize: "clamp(1.625rem, 3vw, 2.25rem)" }}
+                >
+                  {service.title}
+                </h3>
+                <p className="text-[0.9375rem] text-hh-text/[0.65] leading-[1.75] m-0 mb-6">
+                  {service.description}
+                </p>
+                <ul className="list-none p-0 m-0 mb-8 flex flex-col gap-[0.625rem]">
                   {service.features.map((f) => (
-                    <li key={f}>{f}</li>
+                    <li key={f} className="flex items-start gap-[0.625rem] text-sm text-hh-text/[0.72] leading-[1.5]">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[rgba(212,175,95,0.70)] flex-shrink-0 mt-[0.45rem]" aria-hidden="true" />
+                      {f}
+                    </li>
                   ))}
                 </ul>
                 <Link href="/contact" className="hh-btn-primary">
@@ -493,44 +477,31 @@ export default function ServicesPageContent() {
       </section>
 
       {/* ===== WHY CHOOSE US ===== */}
-      <section
-        ref={whyRef}
-        className="hh-sp-section"
-        style={{ background: "rgba(212,175,95,0.03)" }}
-      >
-        <div className="hh-sp-section-inner">
-          <p className="hh-sp-eyebrow">Why Choose Us</p>
+      <section ref={whyRef} className="py-24 bg-[rgba(212,175,95,0.03)]">
+        <div className={sectionInner}>
+          <p className={eyebrow}>Why Choose Us</p>
           <h2
-            style={{
-              fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
-              fontWeight: 700,
-              color: "#1E1408",
-              margin: "0 0 0.5rem",
-              letterSpacing: "-0.015em",
-            }}
+            className="font-bold text-hh-text mb-2 mt-0 tracking-[-0.015em] leading-[1.2]"
+            style={{ fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)" }}
           >
             The Hawaii Home Difference
           </h2>
-          <p
-            style={{
-              fontSize: "0.9375rem",
-              color: "rgba(30,20,8,0.55)",
-              maxWidth: 500,
-              lineHeight: 1.7,
-              margin: 0,
-            }}
-          >
+          <p className={sectionSubtext}>
             What sets us apart isn't just our track record — it's the way we
             treat every client, every time.
           </p>
-          <div className="hh-sp-why-grid">
+          <div className="grid grid-cols-1 min-[700px]:grid-cols-2 min-[900px]:grid-cols-3 gap-6 mt-12">
             {whyUs.map((item) => (
-              <div key={item.title} className="hh-sp-why-card">
-                <div className="hh-sp-why-icon">
+              <div
+                key={item.title}
+                data-why-card=""
+                className="bg-white/[0.68] border border-[rgba(212,175,95,0.16)] rounded-[18px] p-8"
+              >
+                <div className="w-12 h-12 bg-[rgba(212,175,95,0.14)] border border-[rgba(212,175,95,0.24)] rounded-[13px] flex items-center justify-center text-hh-gold mb-5">
                   <item.Icon size={22} />
                 </div>
-                <h3 className="hh-sp-why-title">{item.title}</h3>
-                <p className="hh-sp-why-desc">{item.desc}</p>
+                <h3 className="text-base font-semibold text-hh-text m-0 mb-[0.625rem]">{item.title}</h3>
+                <p className="text-sm text-hh-text/[0.52] leading-[1.65] m-0">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -538,42 +509,31 @@ export default function ServicesPageContent() {
       </section>
 
       {/* ===== PROCESS ===== */}
-      <section
-        ref={processRef}
-        className="hh-sp-section"
-        style={{ background: "#FAF8F2" }}
-      >
-        <div className="hh-sp-section-inner">
-          <p className="hh-sp-eyebrow">Our Process</p>
+      <section ref={processRef} className="py-24 bg-hh-warm-bg">
+        <div className={sectionInner}>
+          <p className={eyebrow}>Our Process</p>
           <h2
-            style={{
-              fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
-              fontWeight: 700,
-              color: "#1E1408",
-              margin: "0 0 0.5rem",
-              letterSpacing: "-0.015em",
-            }}
+            className="font-bold text-hh-text mb-2 mt-0 tracking-[-0.015em] leading-[1.2]"
+            style={{ fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)" }}
           >
             How It Works
           </h2>
-          <p
-            style={{
-              fontSize: "0.9375rem",
-              color: "rgba(30,20,8,0.55)",
-              maxWidth: 500,
-              lineHeight: 1.7,
-              margin: 0,
-            }}
-          >
+          <p className={sectionSubtext}>
             A clear, proven process designed to make your real estate journey
             smooth, confident, and stress-free.
           </p>
-          <div className="hh-sp-process-grid">
+          <div className="grid grid-cols-1 min-[700px]:grid-cols-2 min-[900px]:grid-cols-4 gap-6 mt-12">
             {processSteps.map((step) => (
-              <div key={step.num} className="hh-sp-process-card">
-                <div className="hh-sp-process-num">{step.num}</div>
-                <h3 className="hh-sp-process-title">{step.title}</h3>
-                <p className="hh-sp-process-desc">{step.desc}</p>
+              <div
+                key={step.num}
+                data-process-card=""
+                className="relative p-8 px-6 bg-white/[0.58] border border-[rgba(212,175,95,0.14)] rounded-[18px]"
+              >
+                <div className="text-[2.5rem] font-bold text-[rgba(212,175,95,0.15)] leading-none mb-4 tracking-[-0.03em]">
+                  {step.num}
+                </div>
+                <h3 className="text-base font-semibold text-hh-text m-0 mb-[0.625rem]">{step.title}</h3>
+                <p className="text-sm text-hh-text/[0.52] leading-[1.65] m-0">{step.desc}</p>
               </div>
             ))}
           </div>
@@ -581,52 +541,30 @@ export default function ServicesPageContent() {
       </section>
 
       {/* ===== CTA ===== */}
-      <section className="hh-sp-cta" style={{ background: "#F0EAD8" }}>
+      <section className="relative overflow-hidden py-28 text-center bg-hh-warm-dark max-[480px]:py-16">
         {/* Subtle background glow */}
         <div
+          className="absolute inset-0 pointer-events-none"
           style={{
-            position: "absolute",
-            inset: 0,
             background:
               "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(212,175,95,0.18) 0%, transparent 70%)",
-            pointerEvents: "none",
           }}
         />
-        <div ref={ctaRef} className="hh-sp-cta-inner">
-          <p className="hh-sp-eyebrow" style={{ textAlign: "center" }}>
+        <div ref={ctaRef} className="relative z-[2] max-w-[640px] mx-auto px-8">
+          <p className={`${eyebrow} text-center`}>
             Ready to Get Started?
           </p>
           <h2
-            style={{
-              fontSize: "clamp(1.75rem, 4vw, 2.75rem)",
-              fontWeight: 700,
-              color: "#1E1408",
-              margin: "0 0 1.125rem",
-              letterSpacing: "-0.02em",
-              lineHeight: 1.15,
-            }}
+            className="font-bold text-hh-text mb-[1.125rem] mt-0 tracking-[-0.02em] leading-[1.15]"
+            style={{ fontSize: "clamp(1.75rem, 4vw, 2.75rem)" }}
           >
             Let's Find Your Perfect Property in Hawaii
           </h2>
-          <p
-            style={{
-              fontSize: "1rem",
-              color: "rgba(30,20,8,0.62)",
-              lineHeight: 1.7,
-              margin: "0 0 2.5rem",
-            }}
-          >
+          <p className="text-base text-hh-text/[0.62] leading-[1.7] mb-10 mt-0">
             Schedule a free, no-obligation consultation with one of our local
             experts and take the first step toward your real estate goals.
           </p>
-          <div
-            style={{
-              display: "flex",
-              gap: "1rem",
-              flexWrap: "wrap",
-              justifyContent: "center",
-            }}
-          >
+          <div className="flex gap-4 flex-wrap justify-center">
             <Link href="/contact" className="hh-btn-primary">
               Book a Free Consultation
             </Link>

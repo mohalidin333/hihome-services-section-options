@@ -95,6 +95,13 @@ const subjects = [
   "Other",
 ];
 
+/* Shared Tailwind patterns */
+const eyebrow = "text-[0.6875rem] font-bold tracking-[0.18em] uppercase text-hh-gold mb-[0.875rem]";
+const sectionSubtext = "text-[0.9375rem] text-hh-text/[0.55] max-w-[500px] leading-[1.7] m-0";
+const sectionInner = "max-w-[1200px] mx-auto px-8 max-[700px]:px-5";
+const infoIcon = "w-11 h-11 bg-[rgba(212,175,95,0.14)] border border-[rgba(212,175,95,0.24)] rounded-xl flex items-center justify-center text-hh-gold flex-shrink-0";
+const infoCard = "bg-white/[0.68] border border-[rgba(212,175,95,0.16)] rounded-[18px] px-7 py-6 flex gap-[1.125rem] items-start max-[700px]:p-5";
+
 export default function ContactPageContent() {
   const bgRef = useRef<HTMLDivElement>(null);
   const heroContentRef = useRef<HTMLDivElement>(null);
@@ -150,7 +157,7 @@ export default function ContactPageContent() {
       }
       if (faqRef.current) {
         gsap.fromTo(
-          faqRef.current.querySelectorAll(".hh-contact-faq-item"),
+          faqRef.current.querySelectorAll("[data-faq-item]"),
           { opacity: 0, y: 20 },
           { opacity: 1, y: 0, duration: 0.55, stagger: 0.09, ease: "power2.out", scrollTrigger: { trigger: faqRef.current, start: "top 80%" } }
         );
@@ -171,35 +178,40 @@ export default function ContactPageContent() {
   }
 
   return (
-    <div className="hh-sp-page">
+    <div className="bg-hh-warm-bg text-hh-text min-h-screen">
 
       {/* ===== HERO ===== */}
-      <section className="hh-sp-hero" style={{ minHeight: "50vh" }}>
+      <section className="relative flex items-center overflow-hidden" style={{ minHeight: "50vh" }}>
         <div
           ref={bgRef}
+          className="absolute left-0 right-0 bg-cover"
           style={{
-            position: "absolute", left: 0, right: 0, top: -80,
+            top: -80,
             height: "calc(100% + 160px)",
             backgroundImage: "url('/luxury-home.png')",
-            backgroundSize: "cover",
             backgroundPosition: "center 70%",
             filter: "brightness(0.58) saturate(0.68) contrast(0.95)",
           }}
         />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(10,8,4,0.58) 0%, rgba(10,8,4,0.38) 50%, rgba(10,8,4,0.65) 100%)" }} />
-        <div ref={heroContentRef} className="hh-sp-hero-content" style={{ padding: "140px 2rem 4rem" }}>
-          <p className="hh-sp-eyebrow">Contact Us</p>
+        <div
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(180deg, rgba(10,8,4,0.58) 0%, rgba(10,8,4,0.38) 50%, rgba(10,8,4,0.65) 100%)" }}
+        />
+        <div
+          ref={heroContentRef}
+          className="relative z-[2] max-w-[1200px] mx-auto px-8 pt-[140px] pb-16 w-full max-[700px]:px-5 max-[700px]:pt-[120px]"
+        >
+          <p className={eyebrow}>Contact Us</p>
           <h1
-            style={{
-              fontSize: "clamp(2rem, 5vw, 3.5rem)",
-              fontWeight: 700, color: "#FFFFFF",
-              margin: "0 0 1.125rem", lineHeight: 1.1,
-              letterSpacing: "-0.02em", maxWidth: 580,
-            }}
+            className="font-bold text-white mb-[1.125rem] leading-[1.1] tracking-[-0.02em] max-w-[580px] mt-0"
+            style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)" }}
           >
             Let's Start a Conversation
           </h1>
-          <p style={{ fontSize: "clamp(0.9375rem, 1.6vw, 1.125rem)", color: "rgba(255,255,255,0.82)", lineHeight: 1.72, maxWidth: 480, margin: 0 }}>
+          <p
+            className="text-white/[0.82] leading-[1.72] max-w-[480px] m-0"
+            style={{ fontSize: "clamp(0.9375rem, 1.6vw, 1.125rem)" }}
+          >
             Whether you have a question, need a property valuation, or are ready
             to start your Hawaii real estate journey — we are here and ready to help.
           </p>
@@ -207,43 +219,25 @@ export default function ContactPageContent() {
       </section>
 
       {/* ===== FORM + INFO ===== */}
-      <section className="hh-sp-section" style={{ background: "#FAF8F2" }}>
-        <div className="hh-sp-section-inner">
-          <div className="hh-contact-layout">
+      <section className="py-24 bg-hh-warm-bg">
+        <div className={sectionInner}>
+          <div className="grid grid-cols-1 min-[1024px]:grid-cols-[1fr_420px] gap-16 min-[1024px]:gap-16 items-start max-[1024px]:gap-10">
 
             {/* ---- FORM ---- */}
-            <div ref={formRef} className="hh-contact-form-wrap">
+            <div ref={formRef} className="bg-white/[0.68] border border-[rgba(212,175,95,0.18)] rounded-[24px] px-11 py-10 max-[700px]:px-5 max-[700px]:py-6">
               {submitted ? (
                 /* Success state */
-                <div
-                  style={{
-                    display: "flex", flexDirection: "column",
-                    alignItems: "center", justifyContent: "center",
-                    textAlign: "center", padding: "3rem 1rem", gap: "1.25rem",
-                  }}
-                >
-                  <div
-                    style={{
-                      width: 64, height: 64,
-                      background: "rgba(212,175,95,0.15)",
-                      border: "1px solid rgba(212,175,95,0.30)",
-                      borderRadius: "50%",
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                      color: "#C8A84B",
-                    }}
-                  >
+                <div className="flex flex-col items-center justify-center text-center px-4 py-12 gap-5">
+                  <div className="w-16 h-16 bg-[rgba(212,175,95,0.15)] border border-[rgba(212,175,95,0.30)] rounded-full flex items-center justify-center text-hh-gold">
                     <CheckIcon />
                   </div>
-                  <h2 style={{ fontSize: "1.5rem", fontWeight: 700, color: "#1E1408", margin: 0 }}>
-                    Message Sent!
-                  </h2>
-                  <p style={{ fontSize: "0.9375rem", color: "rgba(30,20,8,0.58)", lineHeight: 1.7, margin: 0, maxWidth: 380 }}>
+                  <h2 className="text-2xl font-bold text-hh-text m-0">Message Sent!</h2>
+                  <p className="text-[0.9375rem] text-hh-text/[0.58] leading-[1.7] m-0 max-w-[380px]">
                     Thank you for reaching out. One of our team members will get
                     back to you within 2 business hours.
                   </p>
                   <button
-                    className="hh-btn-outline"
-                    style={{ marginTop: "0.5rem" }}
+                    className="hh-btn-outline mt-2"
                     onClick={() => {
                       setSubmitted(false);
                       setForm({ firstName: "", lastName: "", email: "", phone: "", subject: subjects[0], message: "" });
@@ -253,20 +247,16 @@ export default function ContactPageContent() {
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+                <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                   <div>
-                    <h2 style={{ fontSize: "1.375rem", fontWeight: 700, color: "#1E1408", margin: "0 0 0.375rem" }}>
-                      Send Us a Message
-                    </h2>
-                    <p style={{ fontSize: "0.875rem", color: "rgba(30,20,8,0.50)", margin: 0 }}>
-                      Free consultation — no obligation, no pressure.
-                    </p>
+                    <h2 className="text-[1.375rem] font-bold text-hh-text m-0 mb-1.5">Send Us a Message</h2>
+                    <p className="text-sm text-hh-text/50 m-0">Free consultation — no obligation, no pressure.</p>
                   </div>
 
                   {/* Name row */}
-                  <div className="hh-contact-field-group">
-                    <div className="hh-contact-field">
-                      <label className="hh-contact-label">First Name</label>
+                  <div className="grid grid-cols-1 min-[700px]:grid-cols-2 gap-5">
+                    <div className="flex flex-col gap-2">
+                      <label className="text-[0.8125rem] font-medium text-hh-gold/[0.75] tracking-[0.01em]">First Name</label>
                       <input
                         name="firstName"
                         value={form.firstName}
@@ -276,8 +266,8 @@ export default function ContactPageContent() {
                         required
                       />
                     </div>
-                    <div className="hh-contact-field">
-                      <label className="hh-contact-label">Last Name</label>
+                    <div className="flex flex-col gap-2">
+                      <label className="text-[0.8125rem] font-medium text-hh-gold/[0.75] tracking-[0.01em]">Last Name</label>
                       <input
                         name="lastName"
                         value={form.lastName}
@@ -290,9 +280,9 @@ export default function ContactPageContent() {
                   </div>
 
                   {/* Email + Phone */}
-                  <div className="hh-contact-field-group">
-                    <div className="hh-contact-field">
-                      <label className="hh-contact-label">Email Address</label>
+                  <div className="grid grid-cols-1 min-[700px]:grid-cols-2 gap-5">
+                    <div className="flex flex-col gap-2">
+                      <label className="text-[0.8125rem] font-medium text-hh-gold/[0.75] tracking-[0.01em]">Email Address</label>
                       <input
                         type="email"
                         name="email"
@@ -303,8 +293,8 @@ export default function ContactPageContent() {
                         required
                       />
                     </div>
-                    <div className="hh-contact-field">
-                      <label className="hh-contact-label">Phone Number</label>
+                    <div className="flex flex-col gap-2">
+                      <label className="text-[0.8125rem] font-medium text-hh-gold/[0.75] tracking-[0.01em]">Phone Number</label>
                       <input
                         type="tel"
                         name="phone"
@@ -317,8 +307,8 @@ export default function ContactPageContent() {
                   </div>
 
                   {/* Subject */}
-                  <div className="hh-contact-field">
-                    <label className="hh-contact-label">Subject</label>
+                  <div className="flex flex-col gap-2">
+                    <label className="text-[0.8125rem] font-medium text-hh-gold/[0.75] tracking-[0.01em]">Subject</label>
                     <select
                       name="subject"
                       value={form.subject}
@@ -335,8 +325,8 @@ export default function ContactPageContent() {
                   </div>
 
                   {/* Message */}
-                  <div className="hh-contact-field">
-                    <label className="hh-contact-label">Message</label>
+                  <div className="flex flex-col gap-2">
+                    <label className="text-[0.8125rem] font-medium text-hh-gold/[0.75] tracking-[0.01em]">Message</label>
                     <textarea
                       name="message"
                       value={form.message}
@@ -356,40 +346,40 @@ export default function ContactPageContent() {
             </div>
 
             {/* ---- INFO SIDEBAR ---- */}
-            <div ref={infoRef} className="hh-contact-info-stack">
-              <div className="hh-contact-info-card">
-                <div className="hh-contact-info-icon"><PhoneIcon /></div>
+            <div ref={infoRef} className="flex flex-col gap-5">
+              <div className={infoCard}>
+                <div className={infoIcon}><PhoneIcon /></div>
                 <div>
-                  <p className="hh-contact-info-label">Phone</p>
-                  <p className="hh-contact-info-value">(808) 555-0100</p>
-                  <p className="hh-contact-info-sub">Mon–Sat, 8am–6pm HST</p>
+                  <p className="text-[0.6875rem] font-bold tracking-[0.12em] uppercase text-hh-text/[0.42] m-0 mb-[0.3rem]">Phone</p>
+                  <p className="text-[0.9375rem] font-medium text-hh-text m-0 mb-0.5">(808) 555-0100</p>
+                  <p className="text-[0.8125rem] text-hh-text/[0.45] m-0">Mon–Sat, 8am–6pm HST</p>
                 </div>
               </div>
 
-              <div className="hh-contact-info-card">
-                <div className="hh-contact-info-icon"><MailIcon /></div>
+              <div className={infoCard}>
+                <div className={infoIcon}><MailIcon /></div>
                 <div>
-                  <p className="hh-contact-info-label">Email</p>
-                  <p className="hh-contact-info-value">hello@hawaiihomeproperties.com</p>
-                  <p className="hh-contact-info-sub">We reply within 2 business hours</p>
+                  <p className="text-[0.6875rem] font-bold tracking-[0.12em] uppercase text-hh-text/[0.42] m-0 mb-[0.3rem]">Email</p>
+                  <p className="text-[0.9375rem] font-medium text-hh-text m-0 mb-0.5">hello@hawaiihomeproperties.com</p>
+                  <p className="text-[0.8125rem] text-hh-text/[0.45] m-0">We reply within 2 business hours</p>
                 </div>
               </div>
 
-              <div className="hh-contact-info-card">
-                <div className="hh-contact-info-icon"><MapPinIcon /></div>
+              <div className={infoCard}>
+                <div className={infoIcon}><MapPinIcon /></div>
                 <div>
-                  <p className="hh-contact-info-label">Office</p>
-                  <p className="hh-contact-info-value">1234 Kalakaua Ave, Suite 500</p>
-                  <p className="hh-contact-info-sub">Honolulu, Hawaii 96815</p>
+                  <p className="text-[0.6875rem] font-bold tracking-[0.12em] uppercase text-hh-text/[0.42] m-0 mb-[0.3rem]">Office</p>
+                  <p className="text-[0.9375rem] font-medium text-hh-text m-0 mb-0.5">1234 Kalakaua Ave, Suite 500</p>
+                  <p className="text-[0.8125rem] text-hh-text/[0.45] m-0">Honolulu, Hawaii 96815</p>
                 </div>
               </div>
 
-              <div className="hh-contact-info-card">
-                <div className="hh-contact-info-icon"><ClockIcon /></div>
+              <div className={infoCard}>
+                <div className={infoIcon}><ClockIcon /></div>
                 <div>
-                  <p className="hh-contact-info-label">Office Hours</p>
-                  <p className="hh-contact-info-value">Mon – Fri: 8:00am – 6:00pm</p>
-                  <p className="hh-contact-info-sub">Sat: 9:00am – 4:00pm · Sun: By appointment</p>
+                  <p className="text-[0.6875rem] font-bold tracking-[0.12em] uppercase text-hh-text/[0.42] m-0 mb-[0.3rem]">Office Hours</p>
+                  <p className="text-[0.9375rem] font-medium text-hh-text m-0 mb-0.5">Mon – Fri: 8:00am – 6:00pm</p>
+                  <p className="text-[0.8125rem] text-hh-text/[0.45] m-0">Sat: 9:00am – 4:00pm · Sun: By appointment</p>
                 </div>
               </div>
 
@@ -411,26 +401,27 @@ export default function ContactPageContent() {
       </section>
 
       {/* ===== FAQ ===== */}
-      <section ref={faqRef} className="hh-sp-section" style={{ background: "rgba(212,175,95,0.06)" }}>
-        <div className="hh-sp-section-inner">
-          <p className="hh-sp-eyebrow">FAQ</p>
+      <section ref={faqRef} className="py-24 bg-[rgba(212,175,95,0.06)]">
+        <div className={sectionInner}>
+          <p className={eyebrow}>FAQ</p>
           <h2
-            style={{
-              fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
-              fontWeight: 700, color: "#1E1408",
-              margin: "0 0 0.5rem", letterSpacing: "-0.015em",
-            }}
+            className="font-bold text-hh-text mb-2 mt-0 tracking-[-0.015em] leading-[1.2]"
+            style={{ fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)" }}
           >
             Frequently Asked Questions
           </h2>
-          <p style={{ fontSize: "0.9375rem", color: "rgba(30,20,8,0.55)", maxWidth: 500, lineHeight: 1.7, margin: 0 }}>
+          <p className={sectionSubtext}>
             Quick answers to the questions we hear most often.
           </p>
-          <div className="hh-contact-faq-list">
+          <div className="flex flex-col gap-4 mt-12">
             {faqs.map((faq) => (
-              <div key={faq.q} className="hh-contact-faq-item">
-                <h3 className="hh-contact-faq-q">{faq.q}</h3>
-                <p className="hh-contact-faq-a">{faq.a}</p>
+              <div
+                key={faq.q}
+                data-faq-item=""
+                className="bg-white/[0.58] border border-[rgba(212,175,95,0.14)] rounded-2xl px-7 py-6 max-[700px]:p-5"
+              >
+                <h3 className="text-[0.9375rem] font-semibold text-hh-text m-0 mb-[0.625rem]">{faq.q}</h3>
+                <p className="text-sm text-hh-text/[0.52] leading-[1.68] m-0">{faq.a}</p>
               </div>
             ))}
           </div>
@@ -438,18 +429,24 @@ export default function ContactPageContent() {
       </section>
 
       {/* ===== CTA ===== */}
-      <section className="hh-sp-cta" style={{ background: "#F0EAD8" }}>
-        <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(212,175,95,0.18) 0%, transparent 70%)", pointerEvents: "none" }} />
-        <div className="hh-sp-cta-inner">
-          <p className="hh-sp-eyebrow" style={{ textAlign: "center" }}>We'd Love to Hear from You</p>
-          <h2 style={{ fontSize: "clamp(1.75rem, 4vw, 2.75rem)", fontWeight: 700, color: "#1E1408", margin: "0 0 1.125rem", letterSpacing: "-0.02em", lineHeight: 1.15 }}>
+      <section className="relative overflow-hidden py-28 text-center bg-hh-warm-dark max-[480px]:py-16">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(212,175,95,0.18) 0%, transparent 70%)" }}
+        />
+        <div className="relative z-[2] max-w-[640px] mx-auto px-8">
+          <p className={`${eyebrow} text-center`}>We'd Love to Hear from You</p>
+          <h2
+            className="font-bold text-hh-text mb-[1.125rem] mt-0 tracking-[-0.02em] leading-[1.15]"
+            style={{ fontSize: "clamp(1.75rem, 4vw, 2.75rem)" }}
+          >
             Your Dream Property in Hawaii Starts with a Conversation
           </h2>
-          <p style={{ fontSize: "1rem", color: "rgba(30,20,8,0.62)", lineHeight: 1.7, margin: "0 0 2.5rem" }}>
+          <p className="text-base text-hh-text/[0.62] leading-[1.7] mb-10 mt-0">
             No pressure, no commitment. Just an honest conversation about your
             goals and how we can help you achieve them.
           </p>
-          <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", justifyContent: "center" }}>
+          <div className="flex gap-4 flex-wrap justify-center">
             <Link href="tel:+18085550100" className="hh-btn-primary">
               Call (808) 555-0100
             </Link>

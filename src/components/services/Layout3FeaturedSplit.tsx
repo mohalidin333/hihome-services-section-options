@@ -72,32 +72,14 @@ export default function Layout3FeaturedSplit() {
   return (
     <div ref={containerRef}>
       {/* Layout identifier */}
-      <p
-        style={{
-          textAlign: "center",
-          fontSize: "0.625rem",
-          fontWeight: 600,
-          letterSpacing: "0.12em",
-          textTransform: "uppercase",
-          color: "rgba(212,175,95,0.42)",
-          marginBottom: "2rem",
-        }}
-      >
+      <p className="text-center text-[0.625rem] font-semibold tracking-[0.12em] uppercase text-[rgba(212,175,95,0.42)] mb-8">
         Option 3 — Featured Split Services
       </p>
 
       {/* =====================================================
           Top row: 2 large featured cards
           ===================================================== */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(2, 1fr)",
-          gap: "1.5rem",
-          marginBottom: "1.5rem",
-        }}
-        className="l3-featured-row"
-      >
+      <div className="l3-featured-row grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
         {/* Featured card — LEFT (Buying) */}
         <div
           className="l3-feat-left hh-service-card"
@@ -109,29 +91,14 @@ export default function Layout3FeaturedSplit() {
             Replace with: <Image src="/images/buying-hero.jpg" … />
           */}
           <div
-            className="hh-img-placeholder"
-            style={{ height: 248, background: primary1.imageBg }}
+            className="hh-img-placeholder h-[248px]"
+            style={{ background: primary1.imageBg }}
           >
-            <div style={{ textAlign: "center", color: "rgba(90,62,10,0.80)" }}>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  marginBottom: "0.75rem",
-                  opacity: 0.9,
-                }}
-              >
+            <div className="text-center text-[rgba(90,62,10,0.80)]">
+              <div className="flex justify-center mb-3 opacity-90">
                 <ServiceIconResolver icon={primary1.icon} size={44} />
               </div>
-              <span
-                style={{
-                  fontSize: "0.75rem",
-                  fontWeight: 600,
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                  opacity: 0.8,
-                }}
-              >
+              <span className="text-xs font-semibold tracking-[0.1em] uppercase opacity-80">
                 {primary1.tagline}
               </span>
             </div>
@@ -140,28 +107,11 @@ export default function Layout3FeaturedSplit() {
             </span>
           </div>
 
-          <div style={{ padding: "1.875rem" }}>
-            <h3
-              style={{
-                fontSize: "1.1875rem",
-                fontWeight: 700,
-                color: "#1E1408",
-                lineHeight: 1.3,
-                marginBottom: "0.75rem",
-                marginTop: 0,
-              }}
-            >
+          <div className="p-[1.875rem]">
+            <h3 className="text-[1.1875rem] font-bold text-hh-text leading-[1.3] mb-3 mt-0">
               {primary1.title}
             </h3>
-            <p
-              style={{
-                fontSize: "0.875rem",
-                color: "rgba(30,20,8,0.65)",
-                lineHeight: 1.72,
-                marginBottom: "1.5rem",
-                marginTop: 0,
-              }}
-            >
+            <p className="text-sm text-hh-text/[0.65] leading-[1.72] mb-6 mt-0">
               {primary1.extendedDescription}
             </p>
             <button className="hh-btn-primary">
@@ -178,29 +128,14 @@ export default function Layout3FeaturedSplit() {
           onMouseLeave={onLeave}
         >
           <div
-            className="hh-img-placeholder"
-            style={{ height: 248, background: primary2.imageBg }}
+            className="hh-img-placeholder h-[248px]"
+            style={{ background: primary2.imageBg }}
           >
-            <div style={{ textAlign: "center", color: "rgba(90,62,10,0.80)" }}>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  marginBottom: "0.75rem",
-                  opacity: 0.9,
-                }}
-              >
+            <div className="text-center text-[rgba(90,62,10,0.80)]">
+              <div className="flex justify-center mb-3 opacity-90">
                 <ServiceIconResolver icon={primary2.icon} size={44} />
               </div>
-              <span
-                style={{
-                  fontSize: "0.75rem",
-                  fontWeight: 600,
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                  opacity: 0.8,
-                }}
-              >
+              <span className="text-xs font-semibold tracking-[0.1em] uppercase opacity-80">
                 {primary2.tagline}
               </span>
             </div>
@@ -209,28 +144,11 @@ export default function Layout3FeaturedSplit() {
             </span>
           </div>
 
-          <div style={{ padding: "1.875rem" }}>
-            <h3
-              style={{
-                fontSize: "1.1875rem",
-                fontWeight: 700,
-                color: "#1E1408",
-                lineHeight: 1.3,
-                marginBottom: "0.75rem",
-                marginTop: 0,
-              }}
-            >
+          <div className="p-[1.875rem]">
+            <h3 className="text-[1.1875rem] font-bold text-hh-text leading-[1.3] mb-3 mt-0">
               {primary2.title}
             </h3>
-            <p
-              style={{
-                fontSize: "0.875rem",
-                color: "rgba(30,20,8,0.65)",
-                lineHeight: 1.72,
-                marginBottom: "1.5rem",
-                marginTop: 0,
-              }}
-            >
+            <p className="text-sm text-hh-text/[0.65] leading-[1.72] mb-6 mt-0">
               {primary2.extendedDescription}
             </p>
             <button className="hh-btn-primary">
@@ -244,48 +162,21 @@ export default function Layout3FeaturedSplit() {
       {/* =====================================================
           Bottom row: 2 smaller horizontal cards
           ===================================================== */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(2, 1fr)",
-          gap: "1.5rem",
-        }}
-        className="l3-secondary-row"
-      >
+      <div className="l3-secondary-row grid grid-cols-1 sm:grid-cols-2 gap-6">
         {[secondary1, secondary2].map((service) => (
           <div
             key={service.id}
-            className="l3-secondary hh-service-card"
+            className="l3-secondary hh-service-card flex flex-row overflow-hidden max-[480px]:flex-col"
             onMouseEnter={onEnter}
             onMouseLeave={onLeave}
-            style={{ display: "flex", flexDirection: "row", overflow: "hidden" }}
           >
             {/* Left color strip with icon (image placeholder) */}
             <div
-              style={{
-                width: 116,
-                flexShrink: 0,
-                background: service.imageBg,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "0.5rem",
-                color: "rgba(90,62,10,0.80)",
-                padding: "0 0.5rem",
-              }}
+              className="w-[116px] flex-shrink-0 flex flex-col items-center justify-center gap-2 text-[rgba(90,62,10,0.80)] px-2 max-[480px]:w-full max-[480px]:h-[88px]"
+              style={{ background: service.imageBg }}
             >
               <ServiceIconResolver icon={service.icon} size={28} />
-              <span
-                style={{
-                  fontSize: "0.5rem",
-                  color: "rgba(80,55,10,0.55)",
-                  letterSpacing: "0.07em",
-                  textTransform: "uppercase",
-                  textAlign: "center",
-                  lineHeight: 1.3,
-                }}
-              >
+              <span className="text-[0.5rem] text-[rgba(80,55,10,0.55)] tracking-[0.07em] uppercase text-center leading-[1.3]">
                 Image
                 <br />
                 Placeholder
@@ -293,41 +184,17 @@ export default function Layout3FeaturedSplit() {
             </div>
 
             {/* Content */}
-            <div style={{ flex: 1, padding: "1.25rem 1.375rem" }}>
+            <div className="flex-1 px-[1.375rem] py-5">
               <span
-                style={{
-                  display: "inline-block",
-                  fontSize: "0.5625rem",
-                  fontWeight: 700,
-                  letterSpacing: "0.11em",
-                  textTransform: "uppercase",
-                  color: service.iconColor,
-                  marginBottom: "0.35rem",
-                }}
+                className="inline-block text-[0.5625rem] font-bold tracking-[0.11em] uppercase mb-[0.35rem]"
+                style={{ color: service.iconColor }}
               >
                 {service.tagline}
               </span>
-              <h3
-                style={{
-                  fontSize: "0.9375rem",
-                  fontWeight: 600,
-                  color: "#1E1408",
-                  lineHeight: 1.35,
-                  marginBottom: "0.5rem",
-                  marginTop: 0,
-                }}
-              >
+              <h3 className="text-[0.9375rem] font-semibold text-hh-text leading-[1.35] mb-2 mt-0">
                 {service.title}
               </h3>
-              <p
-                style={{
-                  fontSize: "0.8125rem",
-                  color: "rgba(30,20,8,0.65)",
-                  lineHeight: 1.65,
-                  marginBottom: "1rem",
-                  marginTop: 0,
-                }}
-              >
+              <p className="text-[0.8125rem] text-hh-text/[0.65] leading-[1.65] mb-4 mt-0">
                 {service.description}
               </p>
               <button
@@ -341,21 +208,6 @@ export default function Layout3FeaturedSplit() {
           </div>
         ))}
       </div>
-
-      {/* Responsive breakpoints */}
-      <style>{`
-        @media (max-width: 640px) {
-          .l3-featured-row,
-          .l3-secondary-row { grid-template-columns: 1fr !important; }
-        }
-        @media (max-width: 480px) {
-          .l3-secondary.hh-service-card { flex-direction: column !important; }
-          .l3-secondary.hh-service-card > div:first-child {
-            width: 100% !important;
-            height: 88px !important;
-          }
-        }
-      `}</style>
     </div>
   );
 }

@@ -58,17 +58,7 @@ export default function Layout1CardGrid() {
   return (
     <div ref={containerRef}>
       {/* Layout identifier (prototype helper) */}
-      <p
-        style={{
-          textAlign: "center",
-          fontSize: "0.625rem",
-          fontWeight: 600,
-          letterSpacing: "0.12em",
-          textTransform: "uppercase",
-          color: "rgba(212,175,95,0.42)",
-          marginBottom: "2rem",
-        }}
-      >
+      <p className="text-center text-[0.625rem] font-semibold tracking-[0.12em] uppercase text-[rgba(212,175,95,0.42)] mb-8">
         Option 1 — Service Cards Grid
       </p>
 
@@ -76,14 +66,7 @@ export default function Layout1CardGrid() {
           2×2 Card Grid
           Responsive: 2 columns → 1 column below 640px
           ===================================================== */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(2, 1fr)",
-          gap: "1.5rem",
-        }}
-        className="l1-grid"
-      >
+      <div className="l1-grid grid grid-cols-1 sm:grid-cols-2 gap-6">
         {services.map((service) => (
           <div
             key={service.id}
@@ -104,25 +87,11 @@ export default function Layout1CardGrid() {
                 />
             */}
             <div
-              className="hh-img-placeholder"
-              style={{ height: 190, background: service.imageBg }}
+              className="hh-img-placeholder h-[190px]"
+              style={{ background: service.imageBg }}
             >
               {/* Icon badge centered in image area */}
-              <div
-                style={{
-                  width: 58,
-                  height: 58,
-                  background: "rgba(255,255,255,0.72)",
-                  backdropFilter: "blur(8px)",
-                  WebkitBackdropFilter: "blur(8px)",
-                  borderRadius: 14,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "#C8A84B",
-                  border: "1px solid rgba(255,255,255,0.90)",
-                }}
-              >
+              <div className="w-[58px] h-[58px] bg-white/[0.72] backdrop-blur-[8px] rounded-[14px] flex items-center justify-center text-hh-gold border border-white/90">
                 <ServiceIconResolver icon={service.icon} size={28} />
               </div>
               <span className="hh-img-placeholder-label">
@@ -131,46 +100,22 @@ export default function Layout1CardGrid() {
             </div>
 
             {/* ---- Card content ---- */}
-            <div style={{ padding: "1.5rem" }}>
+            <div className="p-6">
               {/* Tagline badge */}
               <span
-                style={{
-                  display: "inline-block",
-                  fontSize: "0.625rem",
-                  fontWeight: 700,
-                  letterSpacing: "0.11em",
-                  textTransform: "uppercase",
-                  color: service.iconColor,
-                  marginBottom: "0.5rem",
-                }}
+                className="inline-block text-[0.625rem] font-bold tracking-[0.11em] uppercase mb-2"
+                style={{ color: service.iconColor }}
               >
                 {service.tagline}
               </span>
 
               {/* Title */}
-              <h3
-                style={{
-                  fontSize: "1.0625rem",
-                  fontWeight: 600,
-                  color: "#1E1408",
-                  lineHeight: 1.35,
-                  marginBottom: "0.625rem",
-                  marginTop: 0,
-                }}
-              >
+              <h3 className="text-[1.0625rem] font-semibold text-hh-text leading-[1.35] mb-[0.625rem] mt-0">
                 {service.title}
               </h3>
 
               {/* Description */}
-              <p
-                style={{
-                  fontSize: "0.875rem",
-                  color: "rgba(30,20,8,0.65)",
-                  lineHeight: 1.68,
-                  marginBottom: "1.375rem",
-                  marginTop: 0,
-                }}
-              >
+              <p className="text-sm text-hh-text/[0.65] leading-[1.68] mb-[1.375rem] mt-0">
                 {service.description}
               </p>
 
@@ -183,13 +128,6 @@ export default function Layout1CardGrid() {
           </div>
         ))}
       </div>
-
-      {/* Responsive breakpoint for grid */}
-      <style>{`
-        @media (max-width: 640px) {
-          .l1-grid { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
     </div>
   );
 }

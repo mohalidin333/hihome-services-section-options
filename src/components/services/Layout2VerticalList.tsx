@@ -66,157 +66,70 @@ export default function Layout2VerticalList() {
   return (
     <div ref={containerRef}>
       {/* Layout identifier */}
-      <p
-        style={{
-          textAlign: "center",
-          fontSize: "0.625rem",
-          fontWeight: 600,
-          letterSpacing: "0.12em",
-          textTransform: "uppercase",
-          color: "rgba(212,175,95,0.42)",
-          marginBottom: "2rem",
-        }}
-      >
+      <p className="text-center text-[0.625rem] font-semibold tracking-[0.12em] uppercase text-[rgba(212,175,95,0.42)] mb-8">
         Option 2 — Icon + Description Vertical List
       </p>
 
       {/* =====================================================
           Vertical list rows
           ===================================================== */}
-      <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+      <div className="flex flex-col gap-4">
         {services.map((service, index) => (
           <div
             key={service.id}
-            className="l2-row hh-glass-row"
-            style={{
-              display: "flex",
-              alignItems: "flex-start",
-              gap: "1.375rem",
-              padding: "1.5rem",
-            }}
+            className="l2-row hh-glass-row flex items-start gap-[1.375rem] p-6 max-[480px]:gap-4 max-[480px]:p-[1.125rem]"
           >
             {/* ---- Left column: icon badge + step number ---- */}
-            <div
-              style={{
-                flexShrink: 0,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                gap: "0.5rem",
-              }}
-            >
+            <div className="flex-shrink-0 flex flex-col items-center gap-2">
               {/*
                 ICON PLACEHOLDER
                 Replace this div with an <Image> or custom SVG icon:
                   <Image src="/icons/{service.id}.svg" width={28} height={28} alt="" />
               */}
               <div
-                className="l2-icon-badge"
-                style={{
-                  width: 56,
-                  height: 56,
-                  background: service.iconBg,
-                  borderRadius: 14,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: service.iconColor,
-                  flexShrink: 0,
-                }}
+                className="w-14 h-14 rounded-[14px] flex items-center justify-center flex-shrink-0 max-[480px]:w-11 max-[480px]:h-11 max-[480px]:rounded-[11px]"
+                style={{ background: service.iconBg, color: service.iconColor }}
               >
                 <ServiceIconResolver icon={service.icon} size={24} />
               </div>
 
               {/* Step number */}
-              <span
-                style={{
-                  fontSize: "0.625rem",
-                  fontWeight: 700,
-                  color: "rgba(212,175,95,0.22)",
-                  letterSpacing: "0.04em",
-                }}
-              >
+              <span className="text-[0.625rem] font-bold text-[rgba(212,175,95,0.22)] tracking-[0.04em]">
                 0{index + 1}
               </span>
             </div>
 
             {/* ---- Middle column: text content ---- */}
-            <div style={{ flex: 1, minWidth: 0 }}>
+            <div className="flex-1 min-w-0">
               {/* Tagline */}
               <span
-                style={{
-                  display: "inline-block",
-                  fontSize: "0.625rem",
-                  fontWeight: 700,
-                  letterSpacing: "0.11em",
-                  textTransform: "uppercase",
-                  color: service.iconColor,
-                  marginBottom: "0.375rem",
-                }}
+                className="inline-block text-[0.625rem] font-bold tracking-[0.11em] uppercase mb-[0.375rem]"
+                style={{ color: service.iconColor }}
               >
                 {service.tagline}
               </span>
 
               {/* Title */}
-              <h3
-                style={{
-                  fontSize: "1.0625rem",
-                  fontWeight: 600,
-                  color: "#1E1408",
-                  lineHeight: 1.35,
-                  marginBottom: "0.5rem",
-                  marginTop: 0,
-                }}
-              >
+              <h3 className="text-[1.0625rem] font-semibold text-hh-text leading-[1.35] mb-2 mt-0">
                 {service.title}
               </h3>
 
               {/* Extended description (more detail than Layout 1) */}
-              <p
-                style={{
-                  fontSize: "0.875rem",
-                  color: "rgba(30,20,8,0.65)",
-                  lineHeight: 1.7,
-                  marginTop: 0,
-                  marginBottom: 0,
-                }}
-              >
+              <p className="text-sm text-hh-text/[0.65] leading-[1.7] mt-0 mb-0">
                 {service.extendedDescription}
               </p>
             </div>
 
             {/* ---- Right column: mini image thumbnail ----
                 PLACEHOLDER: replace with <Image> when ready.
-                Hidden below 480px via responsive style below.
+                Hidden below 560px via Tailwind responsive class.
             */}
             <div
-              className="l2-thumb"
-              style={{
-                flexShrink: 0,
-                width: 96,
-                height: 82,
-                background: service.imageBg,
-                borderRadius: 12,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "0.3rem",
-                color: "rgba(90,62,10,0.75)",
-              }}
+              className="l2-thumb flex-shrink-0 w-24 h-[82px] rounded-xl flex flex-col items-center justify-center gap-[0.3rem] text-[rgba(90,62,10,0.75)] max-[560px]:hidden"
+              style={{ background: service.imageBg }}
             >
               <ServiceIconResolver icon={service.icon} size={22} />
-              <span
-                style={{
-                  fontSize: "0.5rem",
-                  color: "rgba(80,55,10,0.55)",
-                  letterSpacing: "0.07em",
-                  textTransform: "uppercase",
-                  textAlign: "center",
-                  lineHeight: 1.25,
-                  padding: "0 0.25rem",
-                }}
-              >
+              <span className="text-[0.5rem] text-[rgba(80,55,10,0.55)] tracking-[0.07em] uppercase text-center leading-[1.25] px-1">
                 Image
                 <br />
                 Placeholder
@@ -227,41 +140,15 @@ export default function Layout2VerticalList() {
       </div>
 
       {/* ---- View All Services CTA ---- */}
-      <div
-        className="l2-view-all"
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          marginTop: "2rem",
-        }}
-      >
+      <div className="l2-view-all flex justify-center mt-8">
         <button
-          className="hh-btn-outline"
+          className="hh-btn-outline-light"
           style={{ padding: "0.75rem 2.25rem", fontSize: "0.9375rem" }}
         >
           View All Services
           <ArrowRightIcon size={15} />
         </button>
       </div>
-
-      <style>{`
-        /* Hide thumbnail on narrow screens */
-        @media (max-width: 560px) {
-          .l2-thumb { display: none !important; }
-        }
-        /* Compact row layout on mobile */
-        @media (max-width: 480px) {
-          .l2-row {
-            gap: 1rem !important;
-            padding: 1.125rem !important;
-          }
-          .l2-row .l2-icon-badge {
-            width: 44px !important;
-            height: 44px !important;
-            border-radius: 11px !important;
-          }
-        }
-      `}</style>
     </div>
   );
 }
